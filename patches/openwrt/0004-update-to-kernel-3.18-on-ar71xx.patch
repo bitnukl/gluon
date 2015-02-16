@@ -1,0 +1,17 @@
+From: Felix Kaechele <heffer@fedoraproject.org>
+Date: Mon, 16 Feb 2015 08:35:19 +0100
+Subject: update to kernel 3.18 on ar71xx
+
+diff --git a/target/linux/ar71xx/Makefile b/target/linux/ar71xx/Makefile
+index 6d4b3f2..6aeea73 100644
+--- a/target/linux/ar71xx/Makefile
++++ b/target/linux/ar71xx/Makefile
+@@ -13,7 +13,7 @@ FEATURES:=mips16
+ CPU_TYPE=34kc
+ SUBTARGETS:=generic nand mikrotik
+ 
+-KERNEL_PATCHVER:=3.14
++KERNEL_PATCHVER:=3.18
+ 
+ include $(INCLUDE_DIR)/target.mk
+ 

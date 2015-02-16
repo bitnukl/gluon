@@ -1,15 +1,15 @@
-From: Matthias Schiffer <mschiffer@universe-factory.net>
-Date: Wed, 7 Jan 2015 16:48:06 +0100
+From: Felix Kaechele <heffer@fedoraproject.org>
+Date: Wed, 11 Feb 2015 21:53:05 +0100
 Subject: batman-adv: introduce 'no_rebroadcast' option
 
 diff --git a/batman-adv/patches/0001-batman-adv-introduce-no_rebroadcast-option.patch b/batman-adv/patches/0001-batman-adv-introduce-no_rebroadcast-option.patch
 new file mode 100644
-index 0000000..cd79917
+index 0000000..6342a38
 --- /dev/null
 +++ b/batman-adv/patches/0001-batman-adv-introduce-no_rebroadcast-option.patch
 @@ -0,0 +1,185 @@
-+From 5ba3f1eac041857deabe39432fdfe1a584bbdd81 Mon Sep 17 00:00:00 2001
-+Message-Id: <5ba3f1eac041857deabe39432fdfe1a584bbdd81.1420645650.git.mschiffer@universe-factory.net>
++From 7daf7246565c5f6d1a2cc2cbbc933138da2e4bba Mon Sep 17 00:00:00 2001
++Message-Id: <7daf7246565c5f6d1a2cc2cbbc933138da2e4bba.1423687883.git.heffer@fedoraproject.org>
 +From: =?UTF-8?q?Linus=20L=C3=BCssing?= <linus.luessing@web.de>
 +Date: Tue, 24 Sep 2013 04:36:27 +0200
 +Subject: [PATCH] batman-adv: introduce 'no_rebroadcast' option
@@ -91,7 +91,7 @@ index 0000000..cd79917
 ++                or wired links. Using this option wrongly is going to
 ++                break your mesh network, use at your own risk!
 +diff --git a/sysfs.c b/sysfs.c
-+index fc47baa..adaeca4 100644
++index a63c3eb..f24d31e 100644
 +--- a/sysfs.c
 ++++ b/sysfs.c
 +@@ -110,6 +110,17 @@ struct batadv_attribute batadv_attr_vlan_##_name = {	\
@@ -112,7 +112,7 @@ index 0000000..cd79917
 + /* Use this, if you have customized show and store functions */
 + #define BATADV_ATTR(_name, _mode, _show, _store)	\
 + struct batadv_attribute batadv_attr_##_name = {		\
-+@@ -221,6 +232,52 @@ ssize_t batadv_show_vlan_##_name(struct kobject *kobj,			\
++@@ -220,6 +231,52 @@ ssize_t batadv_show_vlan_##_name(struct kobject *kobj,			\
 + 	static BATADV_ATTR_VLAN(_name, _mode, batadv_show_vlan_##_name,	\
 + 				batadv_store_vlan_##_name)
 + 
@@ -165,7 +165,7 @@ index 0000000..cd79917
 + static int batadv_store_bool_attr(char *buff, size_t count,
 + 				  struct net_device *net_dev,
 + 				  const char *attr_name, atomic_t *attr)
-+@@ -844,10 +901,12 @@ static ssize_t batadv_show_iface_status(struct kobject *kobj,
++@@ -843,10 +900,12 @@ static ssize_t batadv_show_iface_status(struct kobject *kobj,
 + static BATADV_ATTR(mesh_iface, S_IRUGO | S_IWUSR, batadv_show_mesh_iface,
 + 		   batadv_store_mesh_iface);
 + static BATADV_ATTR(iface_status, S_IRUGO, batadv_show_iface_status, NULL);
@@ -179,7 +179,7 @@ index 0000000..cd79917
 + };
 + 
 +diff --git a/types.h b/types.h
-+index 8854c05..39619fb 100644
++index de09807..73d9801 100644
 +--- a/types.h
 ++++ b/types.h
 +@@ -101,6 +101,7 @@ struct batadv_hard_iface {
@@ -191,5 +191,5 @@ index 0000000..cd79917
 + 
 + /**
 +-- 
-+2.2.1
++2.1.0
 +

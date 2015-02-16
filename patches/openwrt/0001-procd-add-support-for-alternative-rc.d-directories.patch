@@ -1,15 +1,15 @@
-From: Matthias Schiffer <mschiffer@universe-factory.net>
-Date: Wed, 6 Aug 2014 19:12:00 +0200
+From: Felix Kaechele <heffer@fedoraproject.org>
+Date: Wed, 11 Feb 2015 22:07:27 +0100
 Subject: procd: add support for alternative rc.d directories
 
 diff --git a/package/system/procd/patches/0001-Add-support-for-alternative-rc.d-directories.patch b/package/system/procd/patches/0001-Add-support-for-alternative-rc.d-directories.patch
 new file mode 100644
-index 0000000..bc24342
+index 0000000..2c83c4f
 --- /dev/null
 +++ b/package/system/procd/patches/0001-Add-support-for-alternative-rc.d-directories.patch
 @@ -0,0 +1,97 @@
-+From 03a2bc70e4260ec9f669391c47b9a7a9ecd0b75d Mon Sep 17 00:00:00 2001
-+Message-Id: <03a2bc70e4260ec9f669391c47b9a7a9ecd0b75d.1407329621.git.mschiffer@universe-factory.net>
++From edd6ed81af42aafa974f74a0f5da24fe72e2dc07 Mon Sep 17 00:00:00 2001
++Message-Id: <edd6ed81af42aafa974f74a0f5da24fe72e2dc07.1423688770.git.heffer@fedoraproject.org>
 +From: Matthias Schiffer <mschiffer@universe-factory.net>
 +Date: Wed, 6 Aug 2014 14:51:49 +0200
 +Subject: [PATCH] Add support for alternative rc.d directories
@@ -90,10 +90,10 @@ index 0000000..bc24342
 + }
 + 
 +diff --git a/rcS.c b/rcS.c
-+index 0e1b0ba..1b00831 100644
++index 8c72c19..0146e32 100644
 +--- a/rcS.c
 ++++ b/rcS.c
-+@@ -150,7 +150,7 @@ int rcS(char *pattern, char *param, void (*q_empty)(struct runqueue *))
++@@ -153,7 +153,7 @@ int rcS(char *pattern, char *param, void (*q_empty)(struct runqueue *))
 + 	q.empty_cb = q_empty;
 + 	q.max_running_tasks = 1;
 + 
@@ -103,5 +103,5 @@ index 0000000..bc24342
 + 
 + int rc(const char *file, char *param)
 +-- 
-+2.0.4
++2.1.0
 +

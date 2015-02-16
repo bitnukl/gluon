@@ -1,21 +1,29 @@
-From: Matthias Schiffer <mschiffer@universe-factory.net>
-Date: Wed, 7 Jan 2015 16:45:09 +0100
+From: Felix Kaechele <heffer@fedoraproject.org>
+Date: Wed, 11 Feb 2015 22:19:14 +0100
 Subject: alfred: adjust intervals
 
 diff --git a/alfred/patches/0001-alfred-adjust-intervals.patch b/alfred/patches/0001-alfred-adjust-intervals.patch
 new file mode 100644
-index 0000000..a8e0b4d
+index 0000000..bca73fd
 --- /dev/null
 +++ b/alfred/patches/0001-alfred-adjust-intervals.patch
-@@ -0,0 +1,15 @@
+@@ -0,0 +1,26 @@
++From 29d4a624d94c67dfad7a51d7213d8e5690176de9 Mon Sep 17 00:00:00 2001
++Message-Id: <29d4a624d94c67dfad7a51d7213d8e5690176de9.1423687720.git.heffer@fedoraproject.org>
++From: Felix Kaechele <heffer@fedoraproject.org>
++Date: Wed, 11 Feb 2015 21:48:11 +0100
++Subject: [PATCH] alfred: adjust intervals
++
++---
++ alfred.h | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/alfred.h b/alfred.h
++index ef00551..cf41ce6 100644
 +--- a/alfred.h
 ++++ b/alfred.h
-+@@ -32,10 +32,10 @@
-+ #include "list.h"
-+ #include "packet.h"
-+ 
-+-#define ALFRED_INTERVAL			10
-++#define ALFRED_INTERVAL			60
++@@ -35,7 +35,7 @@
++ #define ALFRED_INTERVAL			10
 + #define ALFRED_IF_CHECK_INTERVAL	60
 + #define ALFRED_REQUEST_TIMEOUT		10
 +-#define ALFRED_SERVER_TIMEOUT		60
@@ -23,3 +31,6 @@ index 0000000..a8e0b4d
 + #define ALFRED_DATA_TIMEOUT		600
 + #define ALFRED_SOCK_PATH_DEFAULT	"/var/run/alfred.sock"
 + #define NO_FILTER			-1
++-- 
++2.1.0
++

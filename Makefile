@@ -330,7 +330,7 @@ $(eval $(call merge-lists,INSTALL_PACKAGES,DEFAULT_PACKAGES GLUON_DEFAULT_PACKAG
 
 package_install: FORCE
 	$(OPKG) update
-	$(OPKG) install $(PACKAGE_DIR)/libc_*.ipk
+	$(OPKG) install $(PACKAGE_DIR)/base-files_*.ipk $(PACKAGE_DIR)/libc_*.ipk
 	$(OPKG) install $(PACKAGE_DIR)/kernel_*.ipk
 
 	$(OPKG) install $(INSTALL_PACKAGES)

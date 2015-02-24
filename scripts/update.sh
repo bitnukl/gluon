@@ -14,6 +14,11 @@ for module in $GLUON_MODULES; do
 	cd "$GLUONDIR"/$module
 	git init
 
-	git checkout $commit 2>/dev/null || git fetch $repo $branch
-	git checkout -B base $commit
+	if [ -n "$commit" ]; then
+		git checkout $commit 2>/dev/null || git fetch $repo $branch
+		git checkout -B base $commit
+	else
+		git fetch $repo $branch
+		git checkout -B base FETCH_HEAD
+	fi
 done

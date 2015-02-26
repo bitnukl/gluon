@@ -1,0 +1,176 @@
+From: Felix Kaechele <felix@fetzig.org>
+Date: Wed, 25 Feb 2015 10:42:27 +0100
+Subject: migrate luci.fs to nixio.fs
+
+and also remove other deprecated api calls
+
+diff --git a/admin/autoupdater/files/usr/sbin/autoupdater b/admin/autoupdater/files/usr/sbin/autoupdater
+index 4211dd1..03f14d2 100755
+--- a/admin/autoupdater/files/usr/sbin/autoupdater
++++ b/admin/autoupdater/files/usr/sbin/autoupdater
+@@ -1,7 +1,7 @@
+ #!/usr/bin/lua
+ 
+ 
+-local fs = require('luci.fs')
++local fs = require('nixio.fs')
+ local nixio = require('nixio')
+ local platform_info = require('platform_info')
+ local uci = require('luci.model.uci').cursor()
+diff --git a/gluon/gluon-announce/files/lib/gluon/announce/collect.lua b/gluon/gluon-announce/files/lib/gluon/announce/collect.lua
+index 7bce0a7..61ffc55 100755
+--- a/gluon/gluon-announce/files/lib/gluon/announce/collect.lua
++++ b/gluon/gluon-announce/files/lib/gluon/announce/collect.lua
+@@ -3,9 +3,10 @@
+ local announce_base = '/lib/gluon/announce/'
+ 
+ 
+-fs = require 'luci.fs'
++fs = require 'nixio.fs'
+ uci = require('luci.model.uci').cursor()
+ util = require 'luci.util'
++nutil = require 'nixio.util'
+ 
+ 
+ local json = require 'luci.json'
+@@ -13,7 +14,7 @@ local ltn12 = require 'luci.ltn12'
+ 
+ 
+ local function collect_entry(entry)
+-	if fs.isdirectory(entry) then
++	if fs.stat(entry, 'type') == 'dir' then
+ 		return collect_dir(entry)
+ 	else
+ 		return dofile(entry)
+@@ -23,7 +24,7 @@ end
+ function collect_dir(dir)
+ 	local ret = {}
+ 
+-	for _, entry in ipairs(fs.dir(dir)) do
++	for _, entry in ipairs(nutil.consume(fs.dir(dir))) do
+ 		if entry:sub(1, 1) ~= '.' then
+ 			local ok, val = pcall(collect_entry, dir .. '/' .. entry)
+ 			if ok then
+diff --git a/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/controller/gluon-config-mode/index.lua b/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/controller/gluon-config-mode/index.lua
+index 8f55f54..f31c8d2 100644
+--- a/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/controller/gluon-config-mode/index.lua
++++ b/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/controller/gluon-config-mode/index.lua
+@@ -49,10 +49,11 @@ function action_reboot()
+   uci:commit("gluon-setup-mode")
+ 
+   if nixio.fork() ~= 0 then
+-    local fs = require "luci.fs"
++    local fs = require "nixio.fs"
++    local util = require "nixio.util"
+ 
+     local parts_dir = "/lib/gluon/config-mode/reboot/"
+-    local files = fs.dir(parts_dir)
++    local files = util.consume(fs.dir(parts_dir))
+ 
+     table.sort(files)
+ 
+diff --git a/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/model/cbi/gluon-config-mode/wizard.lua b/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/model/cbi/gluon-config-mode/wizard.lua
+index dd6029b..deb7563 100644
+--- a/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/model/cbi/gluon-config-mode/wizard.lua
++++ b/gluon/gluon-config-mode-core/files/usr/lib/lua/luci/model/cbi/gluon-config-mode/wizard.lua
+@@ -1,10 +1,11 @@
+ local wizard_dir = "/lib/gluon/config-mode/wizard/"
+ local uci = luci.model.uci.cursor()
+-local fs = require "luci.fs"
++local fs = require "nixio.fs"
++local util = require "nixio.util"
+ local f, s
+ 
+ local wizard = {}
+-local files = fs.dir(wizard_dir)
++local files = util.consume(fs.dir(wizard_dir))
+ 
+ table.sort(files)
+ 
+diff --git a/gluon/gluon-core/files/lib/gluon/upgrade/001-upgrade b/gluon/gluon-core/files/lib/gluon/upgrade/001-upgrade
+index 6caba14..c03e0ca 100755
+--- a/gluon/gluon-core/files/lib/gluon/upgrade/001-upgrade
++++ b/gluon/gluon-core/files/lib/gluon/upgrade/001-upgrade
+@@ -1,10 +1,10 @@
+ #!/usr/bin/lua
+ 
+-local fs = require 'luci.fs'
++local fs = require 'nixio.fs'
+ local sysconfig = require 'gluon.sysconfig'
+ 
+ 
+-if fs.isfile('/lib/gluon/version/core') and not sysconfig.gluon_version then
++if fs.access('/lib/gluon/version/core') and not sysconfig.gluon_version then
+   -- This isn't an initial upgrade, so set gluon_version
+   sysconfig.gluon_version = ''
+ end
+diff --git a/gluon/gluon-core/files/lib/gluon/upgrade/010-primary-mac b/gluon/gluon-core/files/lib/gluon/upgrade/010-primary-mac
+index 7414941..0394b83 100755
+--- a/gluon/gluon-core/files/lib/gluon/upgrade/010-primary-mac
++++ b/gluon/gluon-core/files/lib/gluon/upgrade/010-primary-mac
+@@ -10,7 +10,7 @@ end
+ 
+ local platform = require 'gluon.platform'
+ 
+-local fs = require 'luci.fs'
++local fs = require 'nixio.fs'
+ local util = require 'luci.util'
+ 
+ 
+diff --git a/gluon/gluon-core/files/lib/gluon/upgrade/999-version b/gluon/gluon-core/files/lib/gluon/upgrade/999-version
+index 62f0820..9731692 100755
+--- a/gluon/gluon-core/files/lib/gluon/upgrade/999-version
++++ b/gluon/gluon-core/files/lib/gluon/upgrade/999-version
+@@ -2,7 +2,7 @@
+ 
+ local sysconfig = require 'gluon.sysconfig'
+ 
+-local fs = require 'luci.fs'
++local fs = require 'nixio.fs'
+ local util = require 'luci.util'
+ 
+ 
+diff --git a/gluon/gluon-luci-admin/files/usr/lib/lua/luci/view/admin/info.htm b/gluon/gluon-luci-admin/files/usr/lib/lua/luci/view/admin/info.htm
+index 9c38439..61efed0 100644
+--- a/gluon/gluon-luci-admin/files/usr/lib/lua/luci/view/admin/info.htm
++++ b/gluon/gluon-luci-admin/files/usr/lib/lua/luci/view/admin/info.htm
+@@ -1,5 +1,5 @@
+ <%-
+-   local fs = require 'luci.fs'
++   local fs = require 'nixio.fs'
+    local uci = require('luci.model.uci').cursor()
+    local util = require 'luci.util'
+ 
+diff --git a/gluon/gluon-luci-theme/files/usr/lib/lua/luci/view/themes/gluon/header.htm b/gluon/gluon-luci-theme/files/usr/lib/lua/luci/view/themes/gluon/header.htm
+index 730647b..2fe1004 100644
+--- a/gluon/gluon-luci-theme/files/usr/lib/lua/luci/view/themes/gluon/header.htm
++++ b/gluon/gluon-luci-theme/files/usr/lib/lua/luci/view/themes/gluon/header.htm
+@@ -20,7 +20,6 @@ $Id$
+ 
+ 	local hostname = sys.hostname()
+ 	local release = fs.readfile("/lib/gluon/release")
+-	local load1, load5, load15 = sys.loadavg()
+ 
+ 	local request  = disp.context.path
+ 	local request2 = disp.context.request
+diff --git a/gluon/gluon-status-page/files/lib/gluon/status-page/www/cgi-bin/status b/gluon/gluon-status-page/files/lib/gluon/status-page/www/cgi-bin/status
+index 23e612d..50a3758 100755
+--- a/gluon/gluon-status-page/files/lib/gluon/status-page/www/cgi-bin/status
++++ b/gluon/gluon-status-page/files/lib/gluon/status-page/www/cgi-bin/status
+@@ -1,7 +1,6 @@
+ #!/usr/bin/lua
+ 
+ local util = require("luci.util")
+-local fs = require("luci.fs")
+ local ltn12 = require 'luci.ltn12'
+ local sys = require("luci.sys")
+ local json = require("luci.json")
+@@ -10,7 +9,7 @@ local platform_info = require("platform_info")
+ 
+ local hostname = sys.hostname()
+ local model = platform_info.get_model()
+-local release = util.trim(fs.readfile("/lib/gluon/release") or "")
++local release = util.trim(nixio.fs.readfile("/lib/gluon/release") or "")
+ 
+ function escape_html(s)
+   return (s:gsub('&', '&amp;'):gsub('<', '&lt;'):gsub('>', '&gt;'):gsub('"', '&quot;'))

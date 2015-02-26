@@ -1,0 +1,17 @@
+From: Felix Kaechele <felix@fetzig.org>
+Date: Tue, 24 Feb 2015 22:53:51 +0100
+Subject: fix gluon-core luci dependency
+
+diff --git a/gluon/gluon-core/Makefile b/gluon/gluon-core/Makefile
+index ddd9ad4..491541f 100644
+--- a/gluon/gluon-core/Makefile
++++ b/gluon/gluon-core/Makefile
+@@ -12,7 +12,7 @@ define Package/gluon-core
+   SECTION:=gluon
+   CATEGORY:=Gluon
+   TITLE:=Base files of Gluon
+-  DEPENDS:=+gluon-config +lua-platform-info +luci-lib-nixio +odhcp6c +firewall
++  DEPENDS:=+gluon-config +lua-platform-info +luci-base +odhcp6c +firewall
+ endef
+ 
+ define Package/gluon-core/description

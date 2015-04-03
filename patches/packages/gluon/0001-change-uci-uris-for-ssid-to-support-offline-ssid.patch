@@ -1,0 +1,26 @@
+From 6082d70baa08524f5098881ce7c595239b7c08d6 Mon Sep 17 00:00:00 2001
+From: RubenKelevra <ruben@freifunk-nrw.de>
+Date: Fri, 3 Apr 2015 13:51:49 +0200
+Subject: [PATCH] change uci-uris for ssid, to support offline-ssid
+
+---
+ .../files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless    | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
+index 004483e..f7cf254 100755
+--- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
++++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
+@@ -30,7 +30,8 @@ local function configure_radio(radio, index, config)
+ 		device = radio,
+ 		network = 'client',
+ 		mode = 'ap',
+-		ssid = config.ssid,
++		ssid = 'Freifunk-Node startet...',
++		ssid_online = config.ssid,
+ 		macaddr = util.generate_mac(2, index),
+ 		ifname = client_ifname,
+ 	      }
+-- 
+2.3.5
+

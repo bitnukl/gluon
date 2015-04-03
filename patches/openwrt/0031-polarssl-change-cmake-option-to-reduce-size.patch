@@ -1,0 +1,25 @@
+From 069f8953186ed57c17c62a906d459ab7dcc3e1da Mon Sep 17 00:00:00 2001
+From: Ruben Kelevra <ruben@freifunk-nrw.de>
+Date: Fri, 3 Apr 2015 17:19:33 +0200
+Subject: [PATCH] change cmake option to reduce size
+
+---
+ package/libs/polarssl/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/libs/polarssl/Makefile b/package/libs/polarssl/Makefile
+index 384853e..1338f0a 100644
+--- a/package/libs/polarssl/Makefile
++++ b/package/libs/polarssl/Makefile
+@@ -49,7 +49,7 @@ endef
+ PKG_INSTALL:=1
+ 
+ CMAKE_OPTIONS += \
+-	-DCMAKE_BUILD_TYPE:String="Release" \
++	-DCMAKE_BUILD_TYPE:String="MINSIZEREL" \
+ 	-DUSE_SHARED_POLARSSL_LIBRARY:Bool=ON \
+ 	-DENABLE_TESTING:Bool=OFF \
+ 	-DENABLE_PROGRAMS:Bool=OFF \
+-- 
+2.3.5
+

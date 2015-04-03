@@ -4,13 +4,14 @@ Date: Fri, 3 Apr 2015 13:51:49 +0200
 Subject: [PATCH] change uci-uris for ssid, to support offline-ssid
 
 ---
- .../files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless    | 3 ++-
+ .../files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless    | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
+diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
 index 004483e..f7cf254 100755
---- packages/gluon/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless 2015-04-02 22:58:44.493415273 +0200
-+++ packages/gluon/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless.2       2015-04-03 14:00:38.696554221 +0200
+--- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
++++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
+
 @@ -20,7 +20,8 @@
                 device = radio,
                 network = 'client',

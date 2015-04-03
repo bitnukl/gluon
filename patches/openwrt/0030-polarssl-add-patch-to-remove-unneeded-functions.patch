@@ -1,0 +1,153 @@
+From 905c65ed783af4ffa9cf63821f578b399ad4f457 Mon Sep 17 00:00:00 2001
+From: RubenKelevra <ruben@freifunk-nrw.de>
+Date: Fri, 3 Apr 2015 17:03:32 +0200
+Subject: [PATCH] add patch: remove-unneeded-functions
+
+---
+ .../patches/310-remove-unneeded-functions.patch    | 134 +++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
+ create mode 100644 package/libs/polarssl/patches/310-remove-unneeded-functions.patch
+
+diff --git a/package/libs/polarssl/patches/310-remove-unneeded-functions.patch b/package/libs/polarssl/patches/310-remove-unneeded-functions.patch
+new file mode 100644
+index 0000000..ffad551
+--- /dev/null
++++ b/package/libs/polarssl/patches/310-remove-unneeded-functions.patch
+@@ -0,0 +1,134 @@
++From 6416f2206621704c734f3e490cd91dee03b782b5 Mon Sep 17 00:00:00 2001
++From: RubenKelevra <ruben@vfn-nrw.de>
++Date: Fri, 3 Apr 2015 16:39:11 +0200
++Subject: [PATCH] remove unneeded functions
++
++---
++ config.h | 24 ++++++++++++------------
++ 1 file changed, 12 insertions(+), 12 deletions(-)
++
++diff --git a/config.h b/config.h
++index 37a055e..0155b5f 100644
++--- a/config.h
+++++ b/config.h
++@@ -241,15 +241,15 @@
++  * \def POLARSSL_CIPHER_MODE_CFB
++  *
++  * Enable Cipher Feedback mode (CFB) for symmetric ciphers.
++- */
++ #define POLARSSL_CIPHER_MODE_CFB
+++ */
++ 
++ /**
++  * \def POLARSSL_CIPHER_MODE_CTR
++  *
++  * Enable Counter Block Cipher mode (CTR) for symmetric ciphers.
++- */
++ #define POLARSSL_CIPHER_MODE_CTR
+++ */
++ 
++ /**
++  * \def POLARSSL_CIPHER_NULL_CIPHER
++@@ -1084,8 +1084,8 @@
++  * Requires: POLARSSL_HAVE_ASM
++  *
++  * This modules adds support for the AES-NI instructions on x86-64
++- */
++ #define POLARSSL_AESNI_C
+++ */
++ 
++ /**
++  * \def POLARSSL_AES_C
++@@ -1182,8 +1182,8 @@
++  *      TLS_RSA_WITH_RC4_128_MD5
++  *      TLS_RSA_PSK_WITH_RC4_128_SHA
++  *      TLS_PSK_WITH_RC4_128_SHA
++- */
++ #define POLARSSL_ARC4_C
+++ */
++ 
++ /**
++  * \def POLARSSL_ASN1_PARSE_C
++@@ -1247,8 +1247,8 @@
++  * Enable the Blowfish block cipher.
++  *
++  * Module:  library/blowfish.c
++- */
++ #define POLARSSL_BLOWFISH_C
+++ */
++ 
++ /**
++  * \def POLARSSL_CAMELLIA_C
++@@ -1700,8 +1700,8 @@
++  * Requires: POLARSSL_BASE64_C
++  *
++  * This modules adds support for encoding / writing PEM files.
++- */
++ #define POLARSSL_PEM_WRITE_C
+++ */
++ 
++ /**
++  * \def POLARSSL_PK_C
++@@ -1745,8 +1745,8 @@
++  * Requires: POLARSSL_PK_C
++  *
++  * Uncomment to enable generic public key write functions.
++- */
++ #define POLARSSL_PK_WRITE_C
+++ */
++ 
++ /**
++  * \def POLARSSL_PKCS5_C
++@@ -1881,8 +1881,8 @@
++  *          library/ssl_srv.c
++  *
++  * This module adds support for SHA-384 and SHA-512.
++- */
++ #define POLARSSL_SHA512_C
+++ */
++ 
++ /**
++  * \def POLARSSL_SSL_CACHE_C
++@@ -1921,8 +1921,8 @@
++  * Requires: POLARSSL_SSL_TLS_C
++  *
++  * This module is required for SSL/TLS server support.
++- */
++ #define POLARSSL_SSL_SRV_C
+++ */
++ 
++ /**
++  * \def POLARSSL_SSL_TLS_C
++@@ -2055,8 +2055,8 @@
++  * Requires: POLARSSL_BIGNUM_C, POLARSSL_OID_C, POLARSSL_PK_WRITE_C
++  *
++  * This module is the basis for creating X.509 certificates and CSRs.
++- */
++ #define POLARSSL_X509_CREATE_C
+++ */
++ 
++ /**
++  * \def POLARSSL_X509_CRT_WRITE_C
++@@ -2068,8 +2068,8 @@
++  * Requires: POLARSSL_CREATE_C
++  *
++  * This module is required for X.509 certificate creation.
++- */
++ #define POLARSSL_X509_CRT_WRITE_C
+++ */
++ 
++ /**
++  * \def POLARSSL_X509_CSR_WRITE_C
++@@ -2081,8 +2081,8 @@
++  * Requires: POLARSSL_CREATE_C
++  *
++  * This module is required for X.509 certificate request writing.
++- */
++ #define POLARSSL_X509_CSR_WRITE_C
+++ */
++ 
++ /**
++  * \def POLARSSL_XTEA_C
++-- 
++2.3.5
++
+-- 
+2.3.5
+

@@ -12,16 +12,15 @@ index 004483e..f7cf254 100755
 --- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
 +++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
 @@ -20,7 +20,8 @@
-                device = radio,
-                network = 'client',
-                mode = 'ap',
--               ssid = config.ssid,
-+               ssid = 'Freifunk-Node startet...',
-+               ssid_online = config.ssid,
-                macaddr = util.generate_mac(2, index),
-              }
+ 		device = radio,
+ 		network = 'client',
+ 		mode = 'ap',
+-		ssid = config.ssid,
++		ssid = 'Freifunk-Node startet...',
++		ssid_online = config.ssid,
+ 		macaddr = util.generate_mac(2, index),
+ 	      }
    )
 
 -- 
 2.3.5
-

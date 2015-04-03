@@ -1,18 +1,18 @@
-From 39be28e0ab4a0a3dbe0e69dcfbf335dc3e8982a6 Mon Sep 17 00:00:00 2001
+From 431594c451d853353d035df47a36657a7d707ef7 Mon Sep 17 00:00:00 2001
 From: RubenKelevra <ruben@freifunk-nrw.de>
-Date: Fri, 3 Apr 2015 13:15:42 +0200
+Date: Fri, 3 Apr 2015 13:17:27 +0200
 Subject: [PATCH] add patch which resets hop_penalty to previous rating
 
 ---
  ...enalty-to-previous-rating-which-is-well-t.patch | 25 ++++++++++++++++++++++
  1 file changed, 25 insertions(+)
- create mode 100644 batman-adv/patches/0001-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
+ create mode 100644 batman-adv/patches/0002-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
 
-diff --git a/batman-adv/patches/0001-reset-hop_penalty-to-previous-rating-which-is-well-t.patch b/batman-adv/patches/0001-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
+diff --git a/batman-adv/patches/0002-reset-hop_penalty-to-previous-rating-which-is-well-t.patch b/batman-adv/patches/0002-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
 new file mode 100644
 index 0000000..e07dd14
 --- /dev/null
-+++ b/batman-adv/patches/0001-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
++++ b/batman-adv/patches/0002-reset-hop_penalty-to-previous-rating-which-is-well-t.patch
 @@ -0,0 +1,25 @@
 +From e287d3f29fddd35d3a82598670b208028c430bb4 Mon Sep 17 00:00:00 2001
 +From: RubenKelevra <ruben@freifunk-nrw.de>

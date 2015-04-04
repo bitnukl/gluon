@@ -30,8 +30,8 @@ index cf3a188..004483e 100755
    uci:section('wireless', 'wifi-iface', client,
  	      {
 @@ -22,10 +32,10 @@
- 		ssid = 'Freifunk-Node startet...',
- 		ssid_online = config.ssid,
+ 		mode = 'ap',
+ 		ssid = config.ssid,
  		macaddr = util.generate_mac(2, index),
 +		ifname = client_ifname,		
  	      }

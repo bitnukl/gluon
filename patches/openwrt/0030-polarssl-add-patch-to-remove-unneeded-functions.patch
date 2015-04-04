@@ -20,13 +20,13 @@ index 0000000..ffad551
 +Subject: [PATCH] remove unneeded functions
 +
 +---
-+ config.h | 24 ++++++++++++------------
++ include/polarssl/config.h | 24 ++++++++++++------------
 + 1 file changed, 12 insertions(+), 12 deletions(-)
 +
-+diff --git a/config.h b/config.h
++diff --git a/include/polarssl/config.h b/include/polarssl/config.h
 +index 37a055e..0155b5f 100644
-+--- a/config.h
-++++ b/config.h
++--- a/include/polarssl/config.h
+++++ b/include/polarssl/config.h
 +@@ -241,15 +241,15 @@
 +  * \def POLARSSL_CIPHER_MODE_CFB
 +  *

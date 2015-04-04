@@ -12,7 +12,7 @@ diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batma
 index cf3a188..004483e 100755
 --- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
 +++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
-@@ -14,6 +14,16 @@ local function configure_radio(radio, index, config)
+@@ -14,6 +14,16 @@
    uci:set('wireless', radio, 'country', site.regdom)
  
    local client = 'client_' .. radio
@@ -29,19 +29,19 @@ index cf3a188..004483e 100755
    uci:delete('wireless', client)
    uci:section('wireless', 'wifi-iface', client,
  	      {
-@@ -22,10 +32,10 @@ local function configure_radio(radio, index, config)
- 		mode = 'ap',
- 		ssid = config.ssid,
+@@ -23,10 +33,10 @@
+ 		ssid = 'Freifunk-Node startet...',
+ 		ssid_online = config.ssid,
  		macaddr = util.generate_mac(2, index),
-+		ifname = client_ifname,
++		ifname = client_ifname,		
  	      }
    )
  
 -  local mesh = 'mesh_' .. radio
    uci:delete('network', mesh)
-   uci:delete('network', mesh .. '_vlan')
- 
-@@ -61,6 +71,7 @@ local function configure_radio(radio, index, config)
+   uci:section('network', 'interface', mesh,
+ 	      {
+@@ -46,6 +56,7 @@
  		bssid = config.mesh_bssid,
  		macaddr = util.generate_mac(3, index),
  		mcast_rate = config.mesh_mcast_rate,

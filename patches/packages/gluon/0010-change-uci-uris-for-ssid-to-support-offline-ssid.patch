@@ -19,8 +19,7 @@ index 004483e..f7cf254 100755
 +		ssid = 'Freifunk-Node startet...',
 +		ssid_online = config.ssid,
  		macaddr = util.generate_mac(2, index),
- 		ifname = client_ifname,
+ 		ifname = client_ifname,		
  	      }
-
 -- 
 2.3.5

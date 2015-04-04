@@ -12,10 +12,10 @@ index cf3a188..004483e 100755
 +++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
 @@ -30,7 +30,7 @@
    uci:section('network', 'interface', mesh,
-              {
-                proto = 'batadv',
--               mtu = '1528',
-+               mtu = '1532',
-                mesh = 'bat0',
-              }
+ 	      {
+ 		proto = 'batadv',
+-		mtu = '1528',
++		mtu = '1532',
+ 		mesh = 'bat0',
+ 	      }
    )

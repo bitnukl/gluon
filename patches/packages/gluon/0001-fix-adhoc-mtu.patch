@@ -1,0 +1,21 @@
+From: RubenKelevra <ruben@vfn-nrw.de>
+Date: Sa, 04 April 2015 19:16:22 +0100
+Subject: [PATCH] fix mtu for batman-adv 2014.x
+
+---
+ .../gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless   | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
+index cf3a188..004483e 100755
+--- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
++++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/mesh-batman-adv-core/invariant/020-wireless
+@@ -30,7 +30,7 @@
+   uci:section('network', 'interface', mesh,
+              {
+                proto = 'batadv',
+-               mtu = '1528',
++               mtu = '1532',
+                mesh = 'bat0',
+              }
+   )

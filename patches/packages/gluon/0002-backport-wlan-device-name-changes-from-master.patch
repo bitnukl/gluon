@@ -1,0 +1,51 @@
+From 28d47bd778d10470994f56d8b6ead8d982601c6f Mon Sep 17 00:00:00 2001
+From: Matthias Schiffer <mschiffer@universe-factory.net>
+Date: Sat, 24 Jan 2015 23:34:35 +0100
+Subject: [PATCH] gluon-mesh-batman-adv-core: explicitly set WLAN client and
+ mesh interfaces' ifname
+
+---
+ .../gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless   | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
+index cf3a188..004483e 100755
+--- a/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
++++ b/gluon/gluon-mesh-batman-adv-core/files/lib/gluon/upgrade/320-gluon-mesh-batman-adv-core-wireless
+@@ -14,6 +14,16 @@ local function configure_radio(radio, index, config)
+   uci:set('wireless', radio, 'country', site.regdom)
+ 
+   local client = 'client_' .. radio
++  local mesh = 'mesh_' .. radio
++
++  local client_ifname
++  local mesh_ifname
++  local radio_suffix = radio:match('^radio(%d+)$')
++  if radio_suffix then
++    client_ifname = 'client' .. radio_suffix
++    mesh_ifname = 'mesh' .. radio_suffix
++  end
++
+   uci:delete('wireless', client)
+   uci:section('wireless', 'wifi-iface', client,
+ 	      {
+@@ -22,10 +32,10 @@ local function configure_radio(radio, index, config)
+ 		mode = 'ap',
+ 		ssid = config.ssid,
+ 		macaddr = util.generate_mac(2, index),
++		ifname = client_ifname,
+ 	      }
+   )
+ 
+-  local mesh = 'mesh_' .. radio
+   uci:delete('network', mesh)
+   uci:delete('network', mesh .. '_vlan')
+ 
+@@ -61,6 +71,7 @@ local function configure_radio(radio, index, config)
+ 		bssid = config.mesh_bssid,
+ 		macaddr = util.generate_mac(3, index),
+ 		mcast_rate = config.mesh_mcast_rate,
++		ifname = mesh_ifname,
+ 	      }
+   )
+ end

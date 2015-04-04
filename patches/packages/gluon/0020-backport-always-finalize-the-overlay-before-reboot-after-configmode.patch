@@ -1,0 +1,25 @@
+From 0da6354dddc96df87fb705d5cbf45f303761d6e0 Mon Sep 17 00:00:00 2001
+From: Matthias Schiffer <mschiffer@universe-factory.net>
+Date: Thu, 22 Jan 2015 23:53:56 +0100
+Subject: [PATCH] gluon-setup-mode: always finalize the overlay before
+ rebooting
+
+When an early reboot is triggered because an upgrade script has disabled the
+config mode, we need to explicitly call /etc/init.d/done, otherwise the overlay
+will not be finalized after a firstboot and we get an endless reboot loop.
+---
+ .../gluon-setup-mode/files/lib/gluon/setup-mode/rc.d/S15gluon-setup-mode | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gluon/gluon-setup-mode/files/lib/gluon/setup-mode/rc.d/S15gluon-setup-mode b/gluon/gluon-setup-mode/files/lib/gluon/setup-mode/rc.d/S15gluon-setup-mode
+index f62edc3..df8a0e2 100755
+--- a/gluon/gluon-setup-mode/files/lib/gluon/setup-mode/rc.d/S15gluon-setup-mode
++++ b/gluon/gluon-setup-mode/files/lib/gluon/setup-mode/rc.d/S15gluon-setup-mode
+@@ -15,6 +15,7 @@ boot() {
+ 	else
+ 		# This can happen after an upgrade from a version before the config file was called gluon-setup-mode
+ 		# We'll just reboot to return to the normal mode...
++		/etc/init.d/done boot
+ 		reboot
+ 	fi
+ }

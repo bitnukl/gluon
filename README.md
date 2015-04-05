@@ -12,6 +12,8 @@ Please refrain from using the master branch for anything else but development pu
 Use the most recent release instead. You can list all relaseses by running `git branch -a`
 and switch to one by running `git checkout v2014.4;make update`.
 
+To select one of our sites, use first `./get-sites` and select one out of `sites-repo` with e.g. `./set-site vfnnrw/leverkusen`.
+
 If you're using the autoupdater, do not autoupdate nodes with anything but releases.
 If you upgrade using random master commits the nodes *will break* eventually.
 

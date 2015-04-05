@@ -1,4 +1,4 @@
-. "$1"/sites
+. ./sites
 
 for SiteFeed in $SITE_FEEDS; do
 	var=$(echo $SiteFeed | tr '[:lower:]/' '[:upper:]_')
@@ -6,8 +6,8 @@ for SiteFeed in $SITE_FEEDS; do
 	eval branch=\${${var}_BRANCH}
 	eval commit=\${${var}_COMMIT}
 
-	mkdir -p "$1"/sites/$SiteFeed
-	cd "$1"/sites/$SiteFeed
+	mkdir -p "site-modules/$SiteFeed"
+	cd "site-modules/$SiteFeed"
 	git init
 
 	git checkout $commit 2>/dev/null || git fetch $repo $branch

@@ -14,7 +14,10 @@ and switch to one by running `git checkout v2014.4`.
 
 To select one of our sites, use first `./get-sites` and select one out of `sites-repo` with e.g. `./set-site vfnnrw/leverkusen`.
 
-To make a stable-build for e.g. leverkusen run:  
+To make a stable-build for e.g. leverkusen run:
+`git clone https://github.com/VfN-NRW/gluon.git vfnnrw-gluon`  
+`cd vfnnrw-gluon`  
+`git checkout 2014.4.x`  
 `./set-site vfnnrw/leverkusen`  
 `make update`  
 `make`  

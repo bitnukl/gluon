@@ -14,10 +14,10 @@ and switch to one by running `git checkout v2014.4`.
 
 To select one of our sites, use first `./get-sites` and select one out of `sites-repo` with e.g. `./set-site vfnnrw/leverkusen`.
 
-To make a stable-build for e.g. leverkusen run:
-`./set-site vfnnrw/leverkusen` 
-`make update` 
-`make` 
+To make a stable-build for e.g. leverkusen run:  
+`./set-site vfnnrw/leverkusen`  
+`make update`  
+`make`  
 
 If you're using the autoupdater, do not autoupdate nodes with anything but releases.
 If you upgrade using random master commits the nodes *will break* eventually.

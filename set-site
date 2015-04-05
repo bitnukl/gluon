@@ -11,7 +11,7 @@ if [ -z "$SITE" ]; then
 fi
     
 echo "fetching sites-repo..."
-. ./get_sites.sh
+. ./get-sites
 cd "$DIR"
 
 if [ ! -d "site-modules/$SITE" ]; then

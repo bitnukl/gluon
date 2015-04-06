@@ -20,10 +20,14 @@ To make a stable-build for e.g. leverkusen run:
 `git checkout 2014.4.x`  
 `./set-site vfnnrw/leverkusen`  
 `make update`  
-`make -j4 GLUON_BRANCH=stable`  
+`make -j4 GLUON_BRANCH=stable` 
 
-If you're using the autoupdater, do not autoupdate nodes with anything but releases.
-If you upgrade using random master commits the nodes *will break* eventually.
+If you had already cloned and checked out, and just want to make a new build:
+
+`git pull`  
+`./set-site vfnnrw/leverkusen`  
+`make update`  
+`make -j4 GLUON_BRANCH=stable`  
 
 ## Mailinglist (mostly for announcements)
 

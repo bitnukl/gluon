@@ -1,4 +1,4 @@
 SITE_FEEDS="vfnnrw"
 
 VFNNRW_REPO='https://github.com/VfN-NRW/sites.git'
-VFNNRW_COMMIT=4d6d36b7b47b83f69fe1bc15ce78d491ee6a5286
+VFNNRW_COMMIT=2213a4b5f5d5063ad364b656a51a39e799f5edbb

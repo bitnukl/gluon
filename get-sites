@@ -12,8 +12,8 @@ for SiteFeed in $SITE_FEEDS; do
 
 	mkdir -p "site-modules/$SiteFeed"
 	cd "site-modules/$SiteFeed"
-	git init
+	git init 2>&1 > /dev/null
 
-	git checkout $commit 2>/dev/null || git fetch $repo $branch
-	git checkout -B base $commit
+	git checkout $commit 2>&1 > /dev/null || git fetch $repo $branch
+	git checkout -B base $commit 2>&1 > /dev/null
 done
